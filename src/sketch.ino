@@ -1,6 +1,6 @@
 /* 
 
-.ino - 
+sketch.ino - main program
 
 Copyright (c) 2016 Don Haig (time4tux at gmail dot com)
 All rights reserved.
@@ -33,10 +33,10 @@ with this program. If not, see <http://www.gnu.org/licenses/>.
 #define YES   1
 
 //Temperatue limits in degrees Celsius
-#define T1_MAX  23
-#define T1_MIN  18
-#define T2_MAX  23
-#define T2_MIN  18
+#define T1_MAX  -18
+#define T1_MIN  -30
+#define T2_MAX    4
+#define T2_MIN   -2
 
 //Humidity limits in percent 
 #define H1_MAX  40
@@ -139,23 +139,6 @@ void loop()
      sendDataToSerial(DHT2,t2,h2);
   }
   
-  if ((t1 < T1_MIN) || (t1 > T1_MAX) ||
-      (t2 < T2_MIN) || (t2 > T2_MAX) ||
-      (h1 < H1_MIN) || (h1 > H1_MAX) ||
-      (h2 < H2_MIN) || (h2 > H2_MAX)    ) {
-     
-     if (displayON == YES) {
-        display.backlightOff();
-        displayON = NO;
-     } else {
-        display.backlightOn();
-        displayON = YES;
-     }
-  } else { 
-     display.backlightOn();
-  }
-
-  // Wait a few seconds between measurements.
   delay(1000);
 
 }
